@@ -109,6 +109,7 @@ public class SiteController extends BaseController {
     public Object add(Site site) {
         Article article = new Article();
         article.setTitle(site.getTitle());
+        article.setContent(site.getDescription());
         article.setCreateTime(new Date());
         articleService.insert(article);
 
