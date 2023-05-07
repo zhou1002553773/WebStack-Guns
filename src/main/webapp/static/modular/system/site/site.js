@@ -27,7 +27,9 @@ Site.initColumn = function () {
                 }
             }},
         {title: '描述', field: 'description', align: 'center', valign: 'middle', sortable: true},
-        {title: '地址', field: 'url', align: 'center', valign: 'middle', sortable: true}]
+        {title: '地址', field: 'url', align: 'center', valign: 'middle', sortable: true},
+        {title: '文章id', field: 'articleId', align: 'center', valign: 'middle', sortable: true}
+    ]
     return columns;
 };
 
@@ -42,6 +44,7 @@ Site.check = function () {
         return false;
     } else {
         Site.seItem = selected[0];
+        console.log("Site.seItem" + Site.seItem)
         return true;
     }
 };
@@ -60,6 +63,22 @@ Site.openAddSite = function () {
     });
     this.layerIndex = index;
     layer.full(index);
+};
+
+Site.editArticle = function () {
+    console.log("sss")
+    if (this.check()) {
+        var index = layer.open({
+            type: 2,
+            title: '编辑文章',
+            area: ['800px', '420px'], //宽高
+            fix: false, //不固定
+            maxmin: true,
+            content: Feng.ctxPath + '/article/article_update/' + Site.seItem.articleId
+        });
+        this.layerIndex = index;
+        layer.full(index);
+    }
 };
 
 /**

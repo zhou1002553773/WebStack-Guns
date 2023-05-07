@@ -23,6 +23,8 @@ public class Site {
 
     private String url;
 
+    private Integer articleId;
+
     private String createTime;
 
     private String updateTime;

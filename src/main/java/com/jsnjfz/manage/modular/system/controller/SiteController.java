@@ -10,8 +10,10 @@ import com.jsnjfz.manage.core.common.exception.BizExceptionEnum;
 import com.jsnjfz.manage.core.common.node.ZTreeNode;
 import com.jsnjfz.manage.core.common.page.PageInfoBT;
 import com.jsnjfz.manage.core.util.Pager;
+import com.jsnjfz.manage.modular.system.model.Article;
 import com.jsnjfz.manage.modular.system.model.Category;
 import com.jsnjfz.manage.modular.system.model.Site;
+import com.jsnjfz.manage.modular.system.service.impl.ArticleServiceImpl;
 import com.jsnjfz.manage.modular.system.service.impl.CategoryServiceImpl;
 import com.jsnjfz.manage.modular.system.service.impl.SiteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +45,8 @@ public class SiteController extends BaseController {
 
     @Autowired
     private CategoryServiceImpl categoryService;
+    @Autowired
+    private ArticleServiceImpl articleService;
 
     /**
      * 跳转到菜单列表列表页面
@@ -102,6 +107,12 @@ public class SiteController extends BaseController {
     @RequestMapping(value = "/add")
     @ResponseBody
     public Object add(Site site) {
+        Article article = new Article();
+        article.setTitle(site.getTitle());
+        article.setCreateTime(new Date());
+        articleService.insert(article);
+
+        site.setArticleId(article.getId());
         siteService.saveOrUpdate(site,"");
         return SUCCESS_TIP;
     }

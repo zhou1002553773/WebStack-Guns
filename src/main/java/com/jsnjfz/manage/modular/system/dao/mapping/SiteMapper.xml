@@ -44,6 +44,7 @@
             <if test="thumb != null">thumb=#{thumb},</if>
             <if test="description != null">description=#{description},</if>
             <if test="url != null">url=#{url},</if>
+            <if test="articleId != null">article_id=#{articleId},</if>
             create_time=now()
         </set>
     </insert>
