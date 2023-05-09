@@ -47,7 +47,8 @@ ArticleInfoDlg.collectData = function() {
     this
     .set('id')
     .set('title')
-    .set('content')
+    .set('cover')
+    .set('content',testEditor.getMarkdown())
     .set('createTime')
     .set('updateTime');
 }
@@ -63,8 +64,8 @@ ArticleInfoDlg.addSubmit = function() {
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/article/add", function(data){
         Feng.success("添加成功!");
-        window.parent.Article.table.refresh();
-        ArticleInfoDlg.close();
+        // window.parent.Article.table.refresh();
+        // ArticleInfoDlg.close();
     },function(data){
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
@@ -93,5 +94,8 @@ ArticleInfoDlg.editSubmit = function() {
 }
 
 $(function() {
-
+    // 初始化头像上传
+    var avatarUp = new $WebUpload("cover");
+    avatarUp.setUploadBarId("progressBar");
+    avatarUp.init();
 });

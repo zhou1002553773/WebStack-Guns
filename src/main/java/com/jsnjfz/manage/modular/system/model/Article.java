@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2023-05-07
+ * @since 2023-05-09
  */
 @TableName("article")
 public class Article extends Model<Article> {
@@ -24,6 +24,10 @@ public class Article extends Model<Article> {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     private String title;
+    /**
+     * 封面
+     */
+    private String cover;
     private String content;
     @TableField("create_time")
     private Date createTime;
@@ -45,6 +49,14 @@ public class Article extends Model<Article> {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     public String getContent() {
@@ -81,6 +93,7 @@ public class Article extends Model<Article> {
         return "Article{" +
         ", id=" + id +
         ", title=" + title +
+        ", cover=" + cover +
         ", content=" + content +
         ", createTime=" + createTime +
         ", updateTime=" + updateTime +

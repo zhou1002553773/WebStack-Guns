@@ -923,13 +923,12 @@ body {
     display: table-cell;
     position: relative;
     width: 250px;
-    background: #2c2e2f;
+    background: rgb(249,249,249);
     z-index: 1
 }
 
 .sidebar-menu .logo-env {
     padding: 19px 45px;
-    border-bottom: 1px solid #313437
 }
 
 .sidebar-menu .logo-env .logo {
@@ -976,20 +975,21 @@ body {
 }
 
 .sidebar-menu .main-menu a {
-    color: #979898;
+    color: rgb(81,92,107);
     text-decoration: none;
     display: block;
     padding: 13px 5px;
-    border-bottom: 1px solid #313437
 }
 
 .sidebar-menu .main-menu a>i {
     display: inline-block;
-    margin-right: 10px
+    margin-right: 20px;
+    font-size: 20px;
 }
 
 .sidebar-menu .main-menu a>i+span {
-    padding-right: 10px
+    padding-right: 10px;
+    font-size: 26px;
 }
 
 .sidebar-menu .main-menu a>span {
@@ -1006,7 +1006,7 @@ body {
 }
 
 .sidebar-menu .main-menu a:hover {
-    color: #fff
+    color: rgb(89,183,253);
 }
 
 .sidebar-menu .main-menu li.active>a {
@@ -2278,7 +2278,6 @@ body.chat-open .user-info-navbar a[data-toggle=chat] {
 }
 
 .user-info-navbar {
-    background-color: #fff;
     min-height: 0;
     border: 0;
     padding: 0;
@@ -2314,7 +2313,6 @@ body.chat-open .user-info-navbar a[data-toggle=chat] {
     position: relative;
     margin: 0;
     padding: 0;
-    border: 1px solid #fff;
     border-top: 0;
     border-bottom: 0;
     display: block;
@@ -2343,7 +2341,6 @@ body.chat-open .user-info-navbar a[data-toggle=chat] {
     display: block;
     padding: 30px 20px;
     color: #979898;
-    border-bottom: 1px solid #fff;
     top: 1px;
     z-index: 5;
     text-decoration: none
@@ -8966,7 +8963,8 @@ a.text-yellow:hover {
 }
 
 .text-gray {
-    color: #555
+    color: #555;
+    font-size: 18px;
 }
 
 a.text-gray:hover {
@@ -15472,7 +15470,9 @@ button.toast-close-button {
     position: relative;
     background: #fff;
     margin-bottom: 0px;
-    padding: 15px
+    padding: 15px 15px 10px 15px;
+    border-radius: 10px;
+    height: 120px;
 }
 
 .xe-widget.xe-conversations .xe-bg-icon {
@@ -25476,8 +25476,10 @@ button.toast-close-button {
     -webkit-box-orient: vertical;
 }
 
-
 .submit-tag{
     margin-top: 50px;
+}
 
+.xe-comment strong {
+    font-size: 18px
 }

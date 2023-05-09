@@ -17,12 +17,17 @@ package com.jsnjfz.manage.modular.system.controller;
 
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.jsnjfz.manage.core.common.node.MenuNode;
+import com.jsnjfz.manage.modular.system.model.Article;
 import com.jsnjfz.manage.modular.system.model.Category;
+import com.jsnjfz.manage.modular.system.model.Site;
 import com.jsnjfz.manage.modular.system.service.IOperationLogService;
+import com.jsnjfz.manage.modular.system.service.impl.ArticleServiceImpl;
 import com.jsnjfz.manage.modular.system.service.impl.CategoryServiceImpl;
+import com.jsnjfz.manage.modular.system.service.impl.SiteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashMap;
@@ -39,6 +44,10 @@ public class IndexController extends BaseController {
 
     @Autowired
     private CategoryServiceImpl categoryService;
+    @Autowired
+    private SiteServiceImpl siteService;
+    @Autowired
+    private ArticleServiceImpl articleService;
 
     /**
      * 跳转到首页
@@ -60,6 +69,20 @@ public class IndexController extends BaseController {
     @RequestMapping("/about")
     public String about(Model model) {
         return "/about.html";
+    }
+
+    @RequestMapping("/site_detail/{siteId}")
+    public String siteDetail(@PathVariable Integer siteId, Model model) {
+        Site site = siteService.get(siteId);
+        Article article = articleService.selectById(site.getArticleId());
+        List<MenuNode> menus = categoryService.getCatogryNode(new HashMap<>());
+        List<MenuNode> titles = MenuNode.buildTitle(menus);
+        List<Category> categorySiteList = categoryService.getCatogrySite(null);
+        model.addAttribute("categorySiteList", categorySiteList);
+        model.addAttribute("titles", titles);
+        model.addAttribute("site",site);
+        model.addAttribute("article",article);
+        return "/site_detail.html";
     }
 
 }

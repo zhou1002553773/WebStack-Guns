@@ -1,24 +1,30 @@
 @layout("/common/_container.html"){
-<head>
-    <link rel="stylesheet" href="${ctxPath}/static/css/style.css" />
-    <link rel="stylesheet" href="${ctxPath}/static/css/editormd.min.css" />
-    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
-</head>
+@include("/common/_header.html"){}
 
-<div id="layout">
-    <input type="hidden" id="id" value="${item.id}">
-    <h1 id="title">${item.title}</h1>
-    <div id="test-editormd">
-        <textarea id="content" style="display:none;">
-            ${item.content}
-        </textarea>
-    </div>
-</div>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
 
-<div class="row btn-group-m-t">
-    <div class="col-sm-10">
-        <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ArticleInfoDlg.editSubmit()"/>
-        <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ArticleInfoDlg.close()"/>
+        <div class="row btn-group-m-t" style="width: 500px;float:right;">
+            <div class="col-sm-10">
+                <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ArticleInfoDlg.editSubmit()"/>
+                <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ArticleInfoDlg.close()"/>
+            </div>
+        </div>
+
+        <div class="form-horizontal" id="siteForm">
+            <input type="hidden" id="id" value="${item.id}">
+            <input type="hidden" id="title" value="${item.title}">
+            <h1>${item.title}</h1>
+            <div class="row">
+                <div class="col-sm-12 b-r">
+                    <#image id="cover" name="图标" avatarImg="${item.cover}" underline="true"/>
+                </div>
+            </div>
+
+            <div id="test-editormd">
+                <textarea id="content" style="display:none;">${item.content}</textarea>
+            </div>
+        </div>
     </div>
 </div>
 
