@@ -20,7 +20,6 @@ import com.jsnjfz.manage.core.common.node.MenuNode;
 import com.jsnjfz.manage.modular.system.model.Article;
 import com.jsnjfz.manage.modular.system.model.Category;
 import com.jsnjfz.manage.modular.system.model.Site;
-import com.jsnjfz.manage.modular.system.service.IOperationLogService;
 import com.jsnjfz.manage.modular.system.service.impl.ArticleServiceImpl;
 import com.jsnjfz.manage.modular.system.service.impl.CategoryServiceImpl;
 import com.jsnjfz.manage.modular.system.service.impl.SiteServiceImpl;
@@ -56,7 +55,7 @@ public class IndexController extends BaseController {
     public String index(Model model) {
         List<MenuNode> menus = categoryService.getCatogryNode(new HashMap<>());
         List<MenuNode> titles = MenuNode.buildTitle(menus);
-        List<Category> categorySiteList = categoryService.getCatogrySite(null);
+        List<Category> categorySiteList = categoryService.getCategorySiteGood(null);
         model.addAttribute("categorySiteList", categorySiteList);
         model.addAttribute("titles", titles);
         System.out.println(titles);
@@ -77,7 +76,7 @@ public class IndexController extends BaseController {
         Article article = articleService.selectById(site.getArticleId());
         List<MenuNode> menus = categoryService.getCatogryNode(new HashMap<>());
         List<MenuNode> titles = MenuNode.buildTitle(menus);
-        List<Category> categorySiteList = categoryService.getCatogrySite(null);
+        List<Category> categorySiteList = categoryService.getCategorySiteGood(null);
         model.addAttribute("categorySiteList", categorySiteList);
         model.addAttribute("titles", titles);
         model.addAttribute("site",site);

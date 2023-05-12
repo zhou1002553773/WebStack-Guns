@@ -17,6 +17,9 @@
         <if test="title != null and title != ''">
             and s.title like CONCAT('%',#{title},'%')
         </if>
+        <if test="isGood != null and isGood != ''">
+            and s.is_good = #{isGood}
+        </if>
         <if test="offset != null">LIMIT #{offset},#{size}</if>
     </select>
 
@@ -45,6 +48,7 @@
             <if test="description != null">description=#{description},</if>
             <if test="url != null">url=#{url},</if>
             <if test="articleId != null">article_id=#{articleId},</if>
+            <if test="isGood != null">is_good=#{isGood},</if>
             create_time=now()
         </set>
     </insert>
@@ -57,6 +61,8 @@
             <if test="thumb != null">thumb=#{thumb},</if>
             <if test="description != null">description=#{description},</if>
             <if test="url != null">url=#{url},</if>
+            <if test="articleId != null">article_id=#{articleId},</if>
+            <if test="isGood != null">is_good=#{isGood},</if>
             update_time=now()
         </set>
         where id = #{id}

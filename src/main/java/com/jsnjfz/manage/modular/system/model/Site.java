@@ -25,6 +25,8 @@ public class Site {
 
     private Integer articleId;
 
+    private Integer isGood;
+
     private String createTime;
 
     private String updateTime;

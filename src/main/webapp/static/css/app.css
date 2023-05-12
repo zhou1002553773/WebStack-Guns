@@ -928,7 +928,7 @@ body {
 }
 
 .sidebar-menu .logo-env {
-    padding: 19px 45px;
+    padding: 0px 45px;
 }
 
 .sidebar-menu .logo-env .logo {
@@ -961,8 +961,6 @@ body {
 
 .sidebar-menu .main-menu {
     padding-left: 40px;
-    padding-right: 40px;
-    margin-top: 20px;
     margin-bottom: 20px;
     list-style: none
 }
@@ -983,13 +981,13 @@ body {
 
 .sidebar-menu .main-menu a>i {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 5px;
     font-size: 20px;
 }
 
 .sidebar-menu .main-menu a>i+span {
     padding-right: 10px;
-    font-size: 26px;
+    font-size: 20px;
 }
 
 .sidebar-menu .main-menu a>span {
@@ -8963,7 +8961,7 @@ a.text-yellow:hover {
 
 .text-gray {
     color: #555;
-    font-size: 18px;
+    font-size: 26px;
 }
 
 a.text-gray:hover {

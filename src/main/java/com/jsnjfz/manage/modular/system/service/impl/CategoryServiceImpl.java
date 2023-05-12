@@ -47,9 +47,11 @@ public class CategoryServiceImpl extends BaseService<Category> {
     }
 
 
-    public List<Category> getCatogrySite(Map<String, Object> map) {
+    public List<Category> getCategorySiteGood(Map<String, Object> map) {
         List<Category> categoryList = categoryMapper.getList(null);
-        List<Site> siteList = siteMapper.getList(null);
+        Map<String,Object> siteQueryMap = new HashMap<>();
+        siteQueryMap.put("isGood",1);
+        List<Site> siteList = siteMapper.getList(siteQueryMap);
         for (Category category:categoryList) {
             List<Site> sites = new ArrayList<>();
             for (Site site:siteList){

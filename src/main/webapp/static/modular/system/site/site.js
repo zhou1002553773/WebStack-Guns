@@ -28,7 +28,7 @@ Site.initColumn = function () {
             }},
         {title: '描述', field: 'description', align: 'center', valign: 'middle', sortable: true},
         {title: '地址', field: 'url', align: 'center', valign: 'middle', sortable: true},
-        {title: '文章id', field: 'articleId', align: 'center', valign: 'middle', sortable: true}
+        {title: '是否推荐', field: 'isGood', align: 'center', valign: 'middle', sortable: true}
     ]
     return columns;
 };

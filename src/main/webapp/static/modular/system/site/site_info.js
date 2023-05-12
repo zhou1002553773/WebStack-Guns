@@ -118,7 +118,7 @@ SiteDlg.hideCategorySelectTree = function() {
  * 收集数据
  */
 SiteDlg.collectData = function() {
-    this.set('id').set('thumb').set('title').set('description').set('categoryId').set('url');
+    this.set('id').set('thumb').set('title').set('description').set('categoryId').set('url').set("isGood");
 }
 
 /**
