@@ -23,7 +23,11 @@
             @for(title in titles){
                 @if(tool.isEmpty(title.children)){
                 <li>
-                    <a href="#${title.name}" class="smooth">
+                @if(tool.isEmpty(title.domain)){
+                    <a href="#term-${title.id}" class="smooth">
+                @}else{
+                    <a href="${title.domain}#term-${title.id}" onclick="location.href='${title.domain}#term-${title.id}'" class="smooth">
+                @}
                         <i class="fa fa-fw ${title.icon}"></i>
                         <span class="title">${title.name}</span>
                     </a>
@@ -37,7 +41,11 @@
                     <ul>
                         @for(subTitle in title.children){
                         <li>
-                            <a href="#${subTitle.name}" class="smooth">
+                        @if(tool.isEmpty(title.domain)){
+                            <a href="#term-${subTitle.id}" class="smooth">
+                        @}else{
+                            <a href="${title.domain}#term-${subTitle.id}" onclick="location.href='${title.domain}#term-${subTitle.id}'" class="smooth">
+                        @}
                                 <span class="title">${subTitle.name}</span>
                             </a>
                         </li>

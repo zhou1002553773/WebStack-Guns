@@ -17,6 +17,9 @@
         <if test="title != null and title != ''">
             and s.title like CONCAT('%',#{title},'%')
         </if>
+        <if test="categoryId != null and categoryId != ''">
+            and s.category_id = #{categoryId}
+        </if>
         <if test="isGood != null and isGood != ''">
             and s.is_good = #{isGood}
         </if>

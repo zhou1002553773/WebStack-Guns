@@ -14,30 +14,10 @@
         @include("/common/_navbar.html"){}
 
         <div style="margin-top: 100px">
-            <div id="siteDetail">
-                <div id="content" class="container">
-                    <div class="top">
-                        <div class="left">
-                            <img src="/static/img/default_picture.png" alt="...">  <!-- 左侧图片 -->
-                        </div>
-                        <div class="right">         <!-- 右侧文字描述 -->
-                            <h2 style="">${article.title}</h2>
-                            <p>${site.description}</p>
-
-                            <div class="right-bottom">
-                                <button onclick="window.open('${site.url}', '_blank')">链接直达 <img src="/static/img/right_arrow.png" alt="图标"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="test-editormd-view">
-                    <textarea style="display:none;" name="test-editormd-markdown-doc">${article.content}</textarea>
-                </div>
-            </div>
-
-            @include("/common/_footer.html"){}
+            @include("/common/_content.html"){}
         </div>
+
+        @include("/common/_footer.html"){}
     </div>
 </div>
 

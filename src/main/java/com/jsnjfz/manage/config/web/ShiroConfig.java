@@ -187,6 +187,7 @@ public class ShiroConfig {
         hashMap.put("/", "anon");
         hashMap.put("/about", "anon");
         hashMap.put("/site_detail/**", "anon");
+        hashMap.put("/site_list/**", "anon");
         hashMap.put("/**", "user");
         shiroFilter.setFilterChainDefinitionMap(hashMap);
         return shiroFilter;

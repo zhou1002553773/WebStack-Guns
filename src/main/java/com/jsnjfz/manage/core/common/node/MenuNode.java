@@ -72,6 +72,11 @@ public class MenuNode implements Comparable {
     private List<MenuNode> children;
 
     /**
+     * 是否是首页
+     */
+    private String domain;
+
+    /**
      * 查询子节点时候的临时集合
      */
     private List<MenuNode> linkedList = new ArrayList<MenuNode>();
@@ -160,6 +165,14 @@ public class MenuNode implements Comparable {
 
     public void setIsmenu(Integer ismenu) {
         this.ismenu = ismenu;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
     @Override

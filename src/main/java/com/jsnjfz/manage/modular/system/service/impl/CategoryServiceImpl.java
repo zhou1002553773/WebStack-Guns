@@ -54,16 +54,36 @@ public class CategoryServiceImpl extends BaseService<Category> {
         List<Site> siteList = siteMapper.getList(siteQueryMap);
         for (Category category:categoryList) {
             List<Site> sites = new ArrayList<>();
-            for (Site site:siteList){
+            for (Site site: siteList){
                 if (site.getCategoryId() == category.getId()){
                     sites.add(site);
+                    if (sites.size() >= 11){
+                        break;
+                    }
                 }
-
             }
             category.setSites(sites);
         }
         return categoryList;
     }
 
+    public List<Category> getCategorySite(Integer categoryId) {
+        Map<String,Object> categoryListMap = new HashMap<>();
+        categoryListMap.put("id",categoryId);
+        List<Category> categoryList = categoryMapper.getList(categoryListMap);
+        Map<String,Object> siteQueryMap = new HashMap<>();
+        siteQueryMap.put("categoryId",categoryId);
+        List<Site> siteList = siteMapper.getList(siteQueryMap);
+        for (Category category:categoryList) {
+            List<Site> sites = new ArrayList<>();
+            for (Site site: siteList){
+                if (site.getCategoryId() == category.getId()){
+                    sites.add(site);
+                }
+            }
+            category.setSites(sites);
+        }
+        return categoryList;
+    }
 
 }

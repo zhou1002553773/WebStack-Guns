@@ -1,6 +1,6 @@
 @for(categorySite in categorySiteList){
     @if(isNotEmpty(categorySite.sites)){
-    <h4 class="text-gray"><i class="linecons-tag" style="margin-right: 7px;" id="${categorySite.title}"></i>${categorySite.title}</h4>
+    <h4 class="text-gray"><i class="linecons-tag" style="margin-right: 7px;" id="term-${categorySite.id}"></i>${categorySite.title}</h4>
         <div class="row">
             @for(site in categorySite.sites){
             <div class="col-sm-3">
@@ -22,23 +22,25 @@
             </div>
             @}
 
-            <!--<div class="col-sm-3">
-                <div class="xe-widget xe-conversations box2 label-info" title="">
-                    <div class="xe-comment-entry" onclick="window.open('/', '_blank')" data-toggle="tooltip" data-placement="bottom" data-original-title="更多站点">
-                        <a class="xe-user-img">
-                            <img src="/static/img/logo-collapsed2x.png" class="img-circle" width="50">
-                        </a>
-                        <div class="xe-comment">
-                            <a href="#" class="xe-user-name overflowClip_1">
-                                <strong>更多站点</strong>
+            @if(showMore != null && showMore == true){
+                <div class="col-sm-3">
+                    <div class="xe-widget xe-conversations box2 label-info" title="">
+                        <div class="xe-comment-entry" onclick="window.open('/site_list/${categorySite.id}', '_blank')" data-toggle="tooltip" data-placement="bottom" data-original-title="更多站点">
+                            <a class="xe-user-img">
+                                <img src="/static/img/logo-collapsed2x.png" class="img-circle" width="50">
                             </a>
-                            <p class="overflowClip_1" style="margin-top: 8px">点击查看更多站点</p>
+                            <div class="xe-comment">
+                                <a href="#" class="xe-user-name overflowClip_1">
+                                    <strong>更多站点</strong>
+                                </a>
+                                <p class="overflowClip_1" style="margin-top: 8px">点击查看更多站点</p>
+                            </div>
                         </div>
+                        <hr style="margin-top: 15px;margin-bottom: 0">
+                        <img src="/static/img/right.png" style="float:right;width: 20px;margin-top: 8px" onclick="window.open('/site_list/${categorySite.id}', '_blank')" data-toggle="tooltip" data-placement="right" title="直达">
                     </div>
-                    <hr style="margin-top: 15px;margin-bottom: 0">
-                    <img src="/static/img/right.png" style="float:right;width: 20px;margin-top: 8px" onclick="window.open('', '_blank')" data-toggle="tooltip" data-placement="right" title="直达">
                 </div>
-            </div>-->
+            @}
         </div>
     <br>
     @}

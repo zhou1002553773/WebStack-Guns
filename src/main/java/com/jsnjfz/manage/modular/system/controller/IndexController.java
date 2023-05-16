@@ -24,6 +24,7 @@ import com.jsnjfz.manage.modular.system.service.impl.ArticleServiceImpl;
 import com.jsnjfz.manage.modular.system.service.impl.CategoryServiceImpl;
 import com.jsnjfz.manage.modular.system.service.impl.SiteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -40,6 +42,9 @@ import java.util.List;
  */
 @Controller
 public class IndexController extends BaseController {
+
+    @Value("${guns.domain:}")
+    private String domain;
 
     @Autowired
     private CategoryServiceImpl categoryService;
@@ -54,11 +59,12 @@ public class IndexController extends BaseController {
     @RequestMapping("/")
     public String index(Model model) {
         List<MenuNode> menus = categoryService.getCatogryNode(new HashMap<>());
+        menus.forEach(item -> item.setDomain(""));
         List<MenuNode> titles = MenuNode.buildTitle(menus);
         List<Category> categorySiteList = categoryService.getCategorySiteGood(null);
         model.addAttribute("categorySiteList", categorySiteList);
         model.addAttribute("titles", titles);
-        System.out.println(titles);
+        model.addAttribute("showMore", true);
         return "/index.html";
     }
 
@@ -75,13 +81,27 @@ public class IndexController extends BaseController {
         Site site = siteService.get(siteId);
         Article article = articleService.selectById(site.getArticleId());
         List<MenuNode> menus = categoryService.getCatogryNode(new HashMap<>());
+        menus.forEach(item -> item.setDomain(domain));
         List<MenuNode> titles = MenuNode.buildTitle(menus);
-        List<Category> categorySiteList = categoryService.getCategorySiteGood(null);
-        model.addAttribute("categorySiteList", categorySiteList);
+//        List<Category> categorySiteList = categoryService.getCategorySiteGood(null);
+//        model.addAttribute("categorySiteList", categorySiteList);
         model.addAttribute("titles", titles);
         model.addAttribute("site",site);
         model.addAttribute("article",article);
         return "/site_detail.html";
+    }
+
+    @RequestMapping("/site_list/{categoryId}")
+    public String siteList(@PathVariable Integer categoryId, Model model) {
+        List<MenuNode> menus = categoryService.getCatogryNode(new HashMap<>());
+        menus.forEach(item -> item.setDomain(domain));
+        List<MenuNode> titles = MenuNode.buildTitle(menus);
+
+        List<Category> categorySiteList = categoryService.getCategorySite(categoryId);
+        model.addAttribute("categorySiteList", categorySiteList);
+        model.addAttribute("titles", titles);
+        model.addAttribute("showMore", false);
+        return "/site_list.html";
     }
 
 }
