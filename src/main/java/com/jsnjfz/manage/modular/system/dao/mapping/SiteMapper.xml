@@ -52,6 +52,7 @@
             <if test="url != null">url=#{url},</if>
             <if test="articleId != null">article_id=#{articleId},</if>
             <if test="isGood != null">is_good=#{isGood},</if>
+            <if test="sort != null">is_good=#{sort},</if>
             create_time=now()
         </set>
     </insert>
@@ -66,6 +67,7 @@
             <if test="url != null">url=#{url},</if>
             <if test="articleId != null">article_id=#{articleId},</if>
             <if test="isGood != null">is_good=#{isGood},</if>
+            <if test="sort != null">sort=#{sort},</if>
             update_time=now()
         </set>
         where id = #{id}

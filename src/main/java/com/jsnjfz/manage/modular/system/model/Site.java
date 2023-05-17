@@ -27,6 +27,8 @@ public class Site {
 
     private Integer isGood;
 
+    private Integer sort;
+
     private String createTime;
 
     private String updateTime;

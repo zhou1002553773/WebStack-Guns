@@ -12,10 +12,8 @@ import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @Author jsnjfz
@@ -52,16 +50,13 @@ public class CategoryServiceImpl extends BaseService<Category> {
         Map<String,Object> siteQueryMap = new HashMap<>();
         siteQueryMap.put("isGood",1);
         List<Site> siteList = siteMapper.getList(siteQueryMap);
+        Map<Integer, List<Site>> siteGroup = siteList.stream().collect(Collectors.groupingBy(Site::getCategoryId));
+
+        siteList.sort(Comparator.comparing(Site::getSort));
         for (Category category:categoryList) {
-            List<Site> sites = new ArrayList<>();
-            for (Site site: siteList){
-                if (site.getCategoryId() == category.getId()){
-                    sites.add(site);
-                    if (sites.size() >= 11){
-                        break;
-                    }
-                }
-            }
+            List<Site> sites = siteGroup.get(category.getId());
+            sites.sort(Comparator.comparing(Site::getSort));
+            sites = sites.size() > 11 ? sites.subList(0,11) : sites;
             category.setSites(sites);
         }
         return categoryList;
@@ -74,13 +69,11 @@ public class CategoryServiceImpl extends BaseService<Category> {
         Map<String,Object> siteQueryMap = new HashMap<>();
         siteQueryMap.put("categoryId",categoryId);
         List<Site> siteList = siteMapper.getList(siteQueryMap);
+        Map<Integer, List<Site>> siteGroup = siteList.stream().collect(Collectors.groupingBy(Site::getCategoryId));
+
         for (Category category:categoryList) {
-            List<Site> sites = new ArrayList<>();
-            for (Site site: siteList){
-                if (site.getCategoryId() == category.getId()){
-                    sites.add(site);
-                }
-            }
+            List<Site> sites = siteGroup.get(category.getId());
+            sites.sort(Comparator.comparing(Site::getSort));
             category.setSites(sites);
         }
         return categoryList;
