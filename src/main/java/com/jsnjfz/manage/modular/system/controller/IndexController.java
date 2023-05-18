@@ -20,6 +20,8 @@ import com.jsnjfz.manage.core.common.node.MenuNode;
 import com.jsnjfz.manage.modular.system.model.Article;
 import com.jsnjfz.manage.modular.system.model.Category;
 import com.jsnjfz.manage.modular.system.model.Site;
+import com.jsnjfz.manage.modular.system.model.SiteViewLog;
+import com.jsnjfz.manage.modular.system.service.ISiteViewLogService;
 import com.jsnjfz.manage.modular.system.service.impl.ArticleServiceImpl;
 import com.jsnjfz.manage.modular.system.service.impl.CategoryServiceImpl;
 import com.jsnjfz.manage.modular.system.service.impl.SiteServiceImpl;
@@ -30,6 +32,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +55,8 @@ public class IndexController extends BaseController {
     private SiteServiceImpl siteService;
     @Autowired
     private ArticleServiceImpl articleService;
+    @Autowired
+    private ISiteViewLogService siteViewLogService;
 
     /**
      * 跳转到首页
@@ -88,6 +93,14 @@ public class IndexController extends BaseController {
         model.addAttribute("titles", titles);
         model.addAttribute("site",site);
         model.addAttribute("article",article);
+
+        // 浏览记录
+        SiteViewLog siteViewLog = new SiteViewLog();
+        siteViewLog.setSiteId(siteId);
+        siteViewLog.setCreateTime(new Date());
+        siteViewLog.setUpdateTime(new Date());
+        siteViewLogService.insert(siteViewLog);
+
         return "/site_detail.html";
     }
 
